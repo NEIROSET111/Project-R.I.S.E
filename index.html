@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт максончика</title>
+    <meta property="og:title" content="Project R.I.S.E">
+    <meta property="og:description" content="Это сайт где будет рассказываться об игре Project R.I.S.E. Лучший телеграм канал по игре Project R.I.S.E: https://t.me/Project_News1 ">
+    <meta property="og:image" content="images/RISElogo.jpg">
+	<meta name="author" content="NEIROSET">
+    <style>
+        body {
+            font-family: SuperCell Magic, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #fead16; /* Изменен цвет на #fead16 */
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            position: relative;
+        }
+
+        .header .beta {
+            background-color: #fed102; /* Изменен цвет на #fed102 */
+            color: black;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: clamp(10px, 2vw, 14px); /* Адаптивный размер шрифта с минимальным значением 10px */
+        }
+
+        .main-title {
+            font-size: clamp(18px, 4vw, 24px); /* Адаптивный размер шрифта с минимальным значением 18px */
+            text-align: center;
+            margin: 0;
+            flex: 1; /* Добавлено для выравнивания заголовка по центру */
+        }
+
+        .registration-button {
+            cursor: pointer;
+            color: black; /* Цвет текста черный */
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: white; /* Цвет фона белый */
+            margin-right: 20px;
+            font-size: clamp(12px, 2vw, 16px); /* Адаптивный размер шрифта с минимальным значением 12px */
+        }
+
+        .registration-button:hover {
+            background-color: #f0f0f0; /* Изменение цвета при наведении */
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 24px;
+        }
+
+        .menu-icon div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Выровнять содержимое по верхней части блока */
+            padding: 20px;
+            border-radius: 20px;
+            background-color: white;
+            margin: 20px;
+            box-sizing: border-box; /* Включает padding в общую ширину и высоту */
+        }
+
+        .text-block {
+            flex: 1;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Выровнять текст по верхнему краю блока */
+        }
+
+        .text-block h2 {
+            font-size: clamp(20px, 5vw, 30px); /* Адаптивный размер шрифта с минимальным значением 20px */
+        }
+
+        .text-block p {
+            font-size: clamp(14px, 3vw, 18px); /* Адаптивный размер шрифта с минимальным значением 14px */
+        }
+
+        .image-block {
+            flex: 1;
+            margin-left: 20px; /* Отступ между текстом и изображением */
+            display: flex;
+            justify-content: flex-end; /* Смещение изображения к правой границе */
+        }
+
+        .image-block img {
+            width: 100%; /* Задайте ширину в 100% от родительского элемента */
+            height: auto; /* Автоматически вычисляет высоту для сохранения пропорций */
+            border-radius: 20px;
+        }
+
+        .hyperlink {
+            color: #4A90E2; /* Цвет ссылки */
+            text-decoration: none; /* Убрать подчеркивание */
+            font-size: clamp(14px, 2vw, 18px); /* Адаптивный размер шрифта с минимальным значением 14px */
+        }
+
+        .hyperlink:hover {
+            text-decoration: underline; /* Добавить подчеркивание при наведении */
+        }
+
+        /* Стили для всплывающего окна */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачное белое затемнение */
+            z-index: 999;
+            display: none; /* По умолчанию скрыто */
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px; /* Увеличение размера padding */
+            border-radius: 20px; /* Увеличение размера border-radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            width: 40%; /* Увеличение ширины всплывающего окна */
+        }
+
+        .popup-content {
+            font-size: clamp(20px, 4vw, 24px); /* Адаптивный размер шрифта с минимальным значением 20px */
+        }
+
+        .close-button {
+            cursor: pointer;
+            color: white;
+            background-color: #FF5733; /* Красный цвет кнопки */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Добавленные стили */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .content {
+                flex-direction: column;
+            }
+
+            .text-block {
+                order: 1;
+            }
+
+            .image-block {
+                order: 2;
+                margin-left: 0; /* Убрать отступ для мобильных устройств */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="beta">beta</div>
+        <h1 class="main-title">Project R.I.S.E</h1>
+        <a href="https://t.me/Project_News1" class="registration-button">Telegram</a>
+        <div class="menu-icon" onclick="showPopup()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="text-block">
+            <h2>Project R.I.S.E</h2>
+            <p>Project RISE — это многопользовательская экшен-RPG с элементами roguelike, вдохновленная визуальным стилем отмененной игры Clash Heroes. На данный момент в игре доступны пять героев: Два героя дальнего боя: Лучник и Фейерверкер. Три героя ближнего боя: Варвар, Валькирия и Рыбак. </p>
+        </div>
+        <div class="image-block">
+            <img src="images/loadfon.jpg" alt="тут есть фото">
+        </div>
+    </div>
+    
+    <!-- Затемнение и всплывающее окно -->
+    <div class="popup-overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <p style="font-size: clamp(24px, 4vw, 36px);">Скоро</p>
+            <button class="close-button" onclick="closePopup()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Функция для открытия всплывающего окна
+        function showPopup() {
+            var overlay = document.getElementById("overlay");
+            var popup = document.getElementById("popup");
+            overlay.style.display = "block";
+            popup.style.display = "block";
+        }
+
+        // Функция для закрытия всплывающего окна
+        function closePopup() {
+            var overlay = document.getElementById("overlay");
+            var popup = document.getElementById("popup");
+            overlay.style.display = "none";
+            popup.style.display = "none";
+        }
+    </script>
+</body>
+</
